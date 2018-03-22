@@ -11,13 +11,13 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <ul class="dropdown-item pl-1">
-              <a class="dropdown-item" href="#">{{category}}</a>
+              <a class="dropdown-item" href="#"></a>
             </ul>
             <!-- <div class="dropdown-divider"></div> -->
           </div>
         </li>
       </ul>
-    <a class="navbar-brand" style="font-family:futura;font-style:italic;"><strong>JUST BLOG IT!!</strong></a>
+    <a class="navbar-brand" style="font-family:futura;font-style:italic;"><strong>AYO JOGET</strong></a>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

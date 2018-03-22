@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import PlayerList from '../components/OnlinePlayerList'
+import Home from '../components/Home'
 
 Vue.use(Router)
 
@@ -12,9 +12,9 @@ export default new Router({
       name: 'HelloWorld',
       component: HelloWorld
     }, {
-      path: '/playerlist',
-      name: 'PlayerList',
-      component: PlayerList
+      path: '/home',
+      name: 'Home',
+      component: Home
     }
   ]
 })

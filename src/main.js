@@ -3,6 +3,11 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueSocketio from 'vue-socket.io'
+
+const host = 'http://localhost:3000/'
+
+Vue.use(VueSocketio, host)
 
 Vue.config.productionTip = false
 
