@@ -19,6 +19,6 @@ html {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  background-color: rgb(253, 185, 11);
+  background-image: -webkit-linear-gradient(right, rgb(233, 165, 18),rgb(253, 185, 11),rgb(253, 185, 11), rgb(253, 185, 11), rgb(233, 165, 18));
 }
 </style>
