@@ -49,6 +49,7 @@ export default {
           axiosInstance.post('/users', {username: this.userInput})
             .then(user => {
               console.log(user)
+              localStorage.setItem('username', this.userInput)
               // change this router to home/dashboard page
               this.$router.push('/home')
             })

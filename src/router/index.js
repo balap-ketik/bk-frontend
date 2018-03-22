@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Notif from '@/components/Notif'
 import BattleRoom from '@/components/BattleRoom'
 import Login from '@/components/Login'
 
@@ -15,8 +15,8 @@ export default new Router({
     },
     {
       path: '/home',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Notif',
+      component: Notif
     },
     {
       path: '/battle-room',
