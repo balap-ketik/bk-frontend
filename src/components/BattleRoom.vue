@@ -1,0 +1,121 @@
+<template>
+  <div >
+    <h2>My Username {{player}}</h2>
+    <h2>My Point {{point}}</h2>
+    <h2>Player Two Username {{playerTwo}}</h2>
+    <h2>Player Two  Point {{pointTwo}}</h2>
+    <div class="btn-player-one">
+      <button v-if="button.button1" v-shortkey="['arrowleft']" @shortkey="clickLeftPlayerOne">kiri</button>
+      <button disabled="" v-else>kiri</button>
+      <button v-if="button.button2" v-shortkey="['arrowup']" @shortkey="clickUpPlayerOne" >atas</button>
+      <button disabled="" v-else>atas</button>
+      <button v-if="button.button3" v-shortkey="['arrowdown']" @shortkey="clickDownPlayerOne">bawah</button>
+      <button disabled="" v-else>bawah</button>
+      <button v-if="button.button4" v-shortkey="['arrowright']" @shortkey="clickRightPlayerOne">kanan</button>
+      <button disabled="" v-else>kanan</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'BattleRoom',
+  data () {
+    return {
+      player: null,
+      playerTwo: null,
+      point: 0,
+      pointTwo: 0,
+      button: {
+        button1: false,
+        button2: false,
+        button3: false,
+        button4: false
+      },
+      buttonNumber: 0
+    }
+  },
+  sockets: {
+    connect: function () {
+      console.log('socket connected')
+    },
+    get_player_point: function(val) {
+      if(val.player !== this.player){
+        this.playerTwo = val.player
+        this.pointTwo = val.point
+      }
+    },
+    send_random_button_player_1: function (val) {
+      this.changeButtonStatePlayer1(val)
+    }
+  },
+  mounted () {
+    this.startGame()
+    this.player = this.generateID()
+  },
+  methods: {
+    clickDownPlayerOne () {
+      this.point++
+    },
+    clickUpPlayerOne () {
+      this.point++
+    },
+    clickRightPlayerOne () {
+      this.point++
+    },
+    clickLeftPlayerOne () {
+      this.point++
+    },
+    clickLeftPlayerOneMinus () {
+      this.point--
+    },
+    getButtonPressed () {
+      this.$socket.emit('random_button_player_1')
+      this.$socket.emit('player_point',{ player: this.player, point: this.point })
+    },
+    startGame () {
+      const app = this
+      setInterval(function () {
+        app.getButtonPressed()
+      }, 1000)
+    },
+    generateID () {
+      var text = ''
+      var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+
+      for (var i = 0; i < 5; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length))
+      }
+
+      return text
+    },
+    changeButtonStatePlayer1 (number) {
+      this.button = {
+        button1: false,
+        button2: false,
+        button3: false,
+        button4: false
+      }
+      this.button[`button${number}`] = true
+    },
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h1, h2 {
+  font-weight: normal;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+</style>

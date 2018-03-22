@@ -4,6 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VeeValidate from 'vee-validate'
+import VueSocketio from 'vue-socket.io'
+
+let host = 'http://localhost:3000'
+
+if (document.location.hostname !== 'localhost') {
+  host = 'http://bk-api.geekosta.com'
+}
+Vue.use(VueSocketio, host)
+Vue.use(require('vue-shortkey'))
 
 Vue.use(VeeValidate)
 
