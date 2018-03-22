@@ -4,7 +4,6 @@ import HelloWorld from '@/components/HelloWorld'
 import BattleRoom from '@/components/BattleRoom'
 import Login from '@/components/Login'
 
-
 Vue.use(Router)
 
 export default new Router({
