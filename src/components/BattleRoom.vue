@@ -39,8 +39,8 @@ export default {
     connect: function () {
       console.log('socket connected')
     },
-    get_player_point: function(val) {
-      if(val.player !== this.player){
+    get_player_point: function (val) {
+      if (val.player !== this.player) {
         this.playerTwo = val.player
         this.pointTwo = val.point
       }
@@ -71,7 +71,7 @@ export default {
     },
     getButtonPressed () {
       this.$socket.emit('random_button_player_1')
-      this.$socket.emit('player_point',{ player: this.player, point: this.point })
+      this.$socket.emit('player_point', { player: this.player, point: this.point })
     },
     startGame () {
       const app = this
@@ -97,7 +97,7 @@ export default {
         button4: false
       }
       this.button[`button${number}`] = true
-    },
+    }
   }
 }
 </script>

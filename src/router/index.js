@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Notif from '@/components/Notif'
 import LeaderBoard from '@/components/LeaderBoard'
 import Home from '../components/Home'
 import BattleRoom from '@/components/BattleRoom'
