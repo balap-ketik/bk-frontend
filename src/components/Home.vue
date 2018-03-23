@@ -2,14 +2,18 @@
   <div class="container" id="home">
     <div class="players">
       <h1>PLayer List</h1>
-      <div class="boardpack" v-for="(player, index) in players" :key=index>
-        <div class="playerlist">
-          <h3 v-if="player !== ''">{{player}}</h3>
-          <h3 v-else>No Online PLayer Available</h3>
+      <div class="board" v-if="players.length">
+        <div class="boardpack" v-for="(player, index) in players" :key=index>
+          <div class="playerlist">
+            <h3>{{player}}</h3>
+          </div>
+          <div class="logo">
+            <notif :player='player'></notif>
+          </div>
         </div>
-        <div class="logo">
-          <notif :player='player'></notif>
-        </div>
+      </div>
+      <div class="board" v-else>
+        <h3>No online player available</h3>
       </div>
     </div>
     <div class="leaderboard">
@@ -83,6 +87,10 @@ export default {
 {
   background-color: whitesmoke;
 }
+.board
+{
+  border-top: 10px solid rgb(253, 185, 11);
+}
 .boardpack
 {
   display: grid;
@@ -91,8 +99,7 @@ export default {
 }
 .playerlist
 {
-  border-right: 1px solid rgb(253, 185, 11);
-  border-top: 1px solid rgb(253, 185, 11);
+  border-right: 10px solid rgb(253, 185, 11);
 }
 .logo
 {
