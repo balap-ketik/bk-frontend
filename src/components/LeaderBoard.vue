@@ -12,8 +12,7 @@
           </div>
           <div class="thead">
             Score
-          </div>
-        </div>
+          </div> </div>
         <div class="table-body" v-for='(score, index) in leaders' :key='index'>
           <div class="thead">
             {{index+1}}
@@ -21,8 +20,7 @@
           <div class="thead">
             {{score.username}}
           </div>
-          <div class="thead">
-            {{score.score}}
+          <div class="thead"> {{score.score}}
           </div>
         </div>
       </div>
@@ -31,7 +29,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'LeaderBoard',
   data () {
@@ -45,10 +42,7 @@ export default {
   methods: {
     showLeaders: function () {
       let self = this
-      axios({
-        method: 'get',
-        url: 'http://localhost:3000/leaderboards'
-      }).then(response => {
+      this.$http.get('/leaderboards').then(response => {
         console.log(response)
         self.leaders = response.data.leaders
       }).catch(error => {
@@ -81,9 +75,7 @@ export default {
 .table-title
 {
   display: grid;
-  grid-template-columns: auto auto auto;
-}
-.table-body
+  grid-template-columns: auto auto auto; } .table-body
 {
   display: grid;
   grid-template-columns: auto auto auto;
