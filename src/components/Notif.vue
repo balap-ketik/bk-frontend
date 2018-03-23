@@ -11,10 +11,11 @@
     <div id="myModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
+        <i class="fas fa-exclamation-triangle"></i>
         <span @click="close" class="close">&times;</span>
-        <p>Some text in the Modal..</p>
-        <button @click='acceptChallenge'>yes</button>
-        <button @click='rejectChallenge'>no</button>
+        <p id="text_challange"><b>{{player}}</b> want to challange you!!! <br><br> Do you dare?</p>
+        <button class="yes-button" @click='acceptChallenge'>YES</button>
+        <button class="no-button" @click='rejectChallenge'>NO</button>
       </div>
     </div>
 
@@ -114,11 +115,17 @@ div.hello
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-color: #f1f1f2;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */
+    border-radius: 25px;
+    animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+    animation-iteration-count: infinite;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 /* The Close Button */
@@ -135,6 +142,7 @@ div.hello
     text-decoration: none;
     cursor: pointer;
 }
+
 
 .pulse {
   color: whitesmoke;
@@ -179,4 +187,73 @@ div.hello
       box-shadow: 0 0 0 0 rgba(223, 11, 11, 0);
   }
 }
+
+#text_challange {
+  padding : 10px;
+  color: black;
+  font-size: 20px;
+}
+
+.fa-exclamation-triangle {
+  color: red;
+  font-size: 30px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.yes-button{
+  padding: 10px;
+  padding-right: 40px;
+  padding-left: 40px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  border-color: green;
+  cursor: pointer;
+}
+
+.no-button{
+  padding: 10px;
+  padding-right: 40px;
+  padding-left: 40px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color:red;
+  color: white;
+  border-color:red;
+  cursor: pointer;
+}
+.no-button:hover {
+  background: red;
+  box-shadow: 2px 2px 2px #f70025;
+  border-bottom: 2px solid #f70025;
+  transition: all 0.3s ease-in;
+}
+.yes-button:hover {
+  background: green;
+  box-shadow: 2px 2px 2px rgb(6, 168, 6);
+  border-bottom: 2px solid rgb(6, 168, 6);
+  transition: all 0.3s ease-in;
+}
+
 </style>

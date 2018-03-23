@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import VeeValidate from 'vee-validate'
 import VueSocketio from 'vue-socket.io'
+import store from './store'
 import axios from 'axios'
 
 let host = 'http://localhost:3000'
@@ -26,6 +27,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
