@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import LeaderBoard from '@/components/LeaderBoard'
 import Home from '@/components/Home'
 import BattleRoom from '@/components/BattleRoom'
 import Login from '@/components/Login'
@@ -12,21 +11,40 @@ export default new Router({
     {
       path: '/',
       name: 'Login',
-      component: Login
+      component: Login,
+      beforeEnter: (to, from, next) => {
+        const user = localStorage.username
+        if (user === undefined) {
+          next()
+        } else {
+          next('/home')
+        }
+      }
     }, {
       path: '/home',
       name: 'Home',
-      component: Home
+      component: Home,
+      beforeEnter: (to, from, next) => {
+        const user = localStorage.username
+        if (user === undefined) {
+          next('/')
+        } else {
+          next()
+        }
+      }
     },
     {
       path: '/battle-room',
       name: 'BattleRoom',
-      component: BattleRoom
-    },
-    {
-      path: '/leaderboards',
-      name: 'LeaderBoard',
-      component: LeaderBoard
+      component: BattleRoom,
+      beforeEnter: (to, from, next) => {
+        const user = localStorage.username
+        if (user === undefined) {
+          next('/')
+        } else {
+          next()
+        }
+      }
     }
   ]
 })
