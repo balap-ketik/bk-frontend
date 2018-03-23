@@ -1,24 +1,22 @@
 <template>
   <div id="app">
-
-    <navbar></navbar>
-    <div class="jumbotron">
+    <!-- <navbar></navbar> -->
+    <!-- <div class="jumbotron">
       <h1>WELCOME TO AYO JOGET!!</h1>
-    </div>
-
+    </div> -->
     <router-view/>
   </div>
 </template>
 
 <script>
 
-import Navbar from './components/Navbar.vue'
+// import Navbar from './components/Navbar.vue'
 
 export default {
   name: 'App',
-  components: {
-    Navbar
-  }
+  // components: {
+  //   Navbar
+  // }
 }
 </script>
 

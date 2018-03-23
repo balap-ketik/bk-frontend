@@ -34,7 +34,7 @@ export default {
       // this.players = val
       console.log(val)
       if (this.player !== val) {
-        if (this.players.indexOf(val) === -1 ){
+        if (this.players.indexOf(val) === -1) {
           this.players.push(val)
         }
       }
