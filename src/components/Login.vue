@@ -35,15 +35,7 @@
     </div>
   </div>
 </template>
-
 <script>
-import axios from 'axios'
-
-// change baseUrl when deployed
-let axiosInstance = axios.create({
-  baseURL: 'http://localhost:3000'
-})
-
 export default {
   name: 'Login',
   data () {
@@ -56,7 +48,7 @@ export default {
       // console.log(this.userInput)
       this.$validator.validateAll().then((val) => {
         if (val) {
-          axiosInstance.post('/users', {username: this.userInput})
+          this.$http.post('/users', {username: this.userInput})
             .then(user => {
               console.log(user)
               localStorage.setItem('username', this.userInput)
