@@ -143,7 +143,6 @@ div.hello
     cursor: pointer;
 }
 
-
 .pulse {
   color: whitesmoke;
   font-family: futura;
