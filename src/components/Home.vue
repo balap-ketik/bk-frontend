@@ -1,31 +1,36 @@
 <template>
-    <div class="container" id="home">
-      <div class="players">
-        <h1>Player List</h1>
-        <div class="board" v-if="players.length">
-          <div class="boardpack" v-for="(player, index) in players" :key=index>
-            <div class="playerlist">
-              <h3>{{player}}</h3>
-            </div>
-            <div class="logo">
-              <notif :player='player'></notif>
-            </div>
+<div id="dashboard">
+  <div>
+    <jumbo></jumbo>
+  </div>
+  <div class="container" id="home">
+    <div class="players">
+      <h1>Player List</h1>
+      <div class="board" v-if="players.length">
+        <div class="boardpack" v-for="(player, index) in players" :key=index>
+          <div class="playerlist">
+            <h3>{{player}}</h3>
+          </div>
+          <div class="logo">
+            <notif :player='player'></notif>
           </div>
         </div>
-        <div class="board" v-else>
-          <h3>No online player available</h3>
-        </div>
       </div>
-      <div class="leaderboard">
-        <leaderboard></leaderboard>
+      <div class="board" v-else>
+        <h3>No online player available</h3>
       </div>
     </div>
+    <div class="leaderboard">
+      <leaderboard></leaderboard>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
 import Notif from '@/components/Notif'
 import Leaderboard from '@/components/LeaderBoard'
-import Header from '@/components/Header'
+import Jumbo from '@/components/Header'
 // const iframeElement = document.querySelector('iframe')
 // const iframeElementID = iframeElement.id
 // const widget1 = SC.Widget(iframeElement)
@@ -57,7 +62,7 @@ export default {
   components: {
     Notif: Notif,
     Leaderboard: Leaderboard,
-    Header: Header
+    Jumbo: Jumbo
   },
   created () {
     // this.generateId()
@@ -78,7 +83,15 @@ export default {
 </script>
 
 <style>
-
+#dashboard
+{
+  display: flex;
+  flex-direction: column;
+  margin-top: -0.5em;
+}
+#dashboard > div {
+  padding: 50px;
+}
 .container
 {
   /* background-color: black; */

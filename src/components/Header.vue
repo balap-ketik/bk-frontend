@@ -90,6 +90,7 @@ svg {
   /* position: absolute; */
   width: 100%;
   height: 100%;
-  margin-bottom: -0.85em;
+  /* margin-bottom: 0.85em; */
+  /* margin-top: -0.65em; */
 }
 </style>
