@@ -10,8 +10,7 @@
           <div class="thead">
             Username
           </div>
-          <div class="thead">
-            Score
+          <div class="thead"> Score
           </div> </div>
         <div class="table-body" v-for='(score, index) in leaders' :key='index'>
           <div class="thead">
@@ -29,26 +28,15 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'LeaderBoard',
-  data () {
-    return {
-      leaders: {}
-    }
-  },
   created: function () {
     this.showLeaders()
   },
+  computed: mapState(['leaders']),
   methods: {
-    showLeaders: function () {
-      let self = this
-      this.$http.get('/leaderboards').then(response => {
-        console.log(response)
-        self.leaders = response.data.leaders
-      }).catch(error => {
-        console.log(error)
-      })
-    }
+    ...mapActions(['showLeaders'])
   }
 }
 </script>
