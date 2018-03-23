@@ -1,12 +1,12 @@
 <template>
   <div class="hello">
-    <button id="join" @click="invite(player)">Join Battle</button>
+    <button class="pulse" @click="invite(player)">CHALLENGE</button>
     <!--  2 -->
     <!-- pop up confirmation untuk join battle di room -->
     <!-- if yes, maka jalankan function -->
     <!-- if no -->
     <!-- Trigger/Open The Modal -->
-    <button id="myBtn" @click="showInvite">Open Modal</button>
+    <!-- <button id="myBtn" @click="showInvite">Open Modal</button> -->
     <!-- The Modal -->
     <div id="myModal" class="modal">
       <!-- Modal content -->
@@ -95,7 +95,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+div.hello
+{
+  align-items: center;
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -137,6 +141,51 @@ export default {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+.pulse {
+  color: whitesmoke;
+  font-family: futura;
+  font-weight: bolder;
+  margin-right: 0;
+  display: block;
+  width: 100px;
+  height: 30px;
+  border-radius: 10%;
+  background: green;
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+  animation: pulse 2s infinite;
+}
+.pulse:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(212, 28, 21, 0.4);
+    box-shadow: 0 0 0 0 rgba(202, 16, 16, 0.4);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(223, 11, 11, 0);
+      box-shadow: 0 0 0 10px rgba(223, 11, 11, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(223, 11, 11, 0);
+      box-shadow: 0 0 0 0 rgba(223, 11, 11, 0);
+  }
 }
 
 #text_challange {
@@ -206,4 +255,5 @@ export default {
   border-bottom: 2px solid rgb(6, 168, 6);
   transition: all 0.3s ease-in;
 }
+
 </style>
