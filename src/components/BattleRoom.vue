@@ -145,7 +145,7 @@ export default {
         app.readyTwo = false
         localStorage.removeItem('usernameEnemy')
         app.sendPlayerPoint()
-      }, 10000)
+      }, 120000)
     },
     sendPlayerPoint () {
       this.$http.post('/leaderboards', {username: this.player, score: this.point}).then(res => {
