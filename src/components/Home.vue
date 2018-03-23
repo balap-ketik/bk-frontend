@@ -1,27 +1,34 @@
 <template>
   <div class="container player-list">
-    <div class="row" v-for="(player, index) in players" :key=index>
+    <div class="row">
       <div class="col-md-4">
-        <ul class="list-group">
+        <ul class="list-group" v-for="(player, index) in players" :key=index>
           <li class="list-group-item list-group-item-action">
             {{player}}
+            <button class="btn btn-outline-success">
+              <i class="fab fa-playstation fa-2x"></i>
+            </button>
+          </li>
+        </ul>
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-action">
           </li>
         </ul>
       </div>
-      <div class="col-md-2">
-        <button class="btn btn-outline-success">
-          <i class="fab fa-playstation fa-2x"></i>
-        </button>
+      <div class="col-md-6">
+        <p>leader board</p>
+        <router-view/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   data () {
     return {
-      player: '',
+      player: localStorage.getItem('username'),
       players: []
     }
   },
@@ -41,7 +48,7 @@ export default {
     }
   },
   created () {
-    this.generateId()
+    // this.generateId()
     setInterval(() => {
       this.$socket.emit('player_in', this.player)
     }, 1000)
