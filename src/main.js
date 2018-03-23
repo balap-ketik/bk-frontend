@@ -5,12 +5,13 @@ import App from './App'
 import router from './router'
 import VeeValidate from 'vee-validate'
 import VueSocketio from 'vue-socket.io'
+import store from './store'
 import axios from 'axios'
 
 let host = 'http://localhost:3000'
 
 if (document.location.hostname !== 'localhost') {
-  host = 'http://bk-api.geekosta.com'
+  host = 'http://ayojoget-api.geekosta.com'
 }
 Vue.prototype.$http = axios.create({
   baseURL: host
@@ -26,6 +27,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

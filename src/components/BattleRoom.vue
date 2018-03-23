@@ -20,6 +20,7 @@
       <button @click="playerReady"> Ready</button>
     </div>
     <h2 v-if="gameOver">Gamve Over</h2>
+    <router-link to="/home" v-if="gameOver"> Back To Home</router-link>
   </div>
 </template>
 
@@ -29,7 +30,7 @@ export default {
   data () {
     return {
       player: localStorage.username,
-      playerTwo: null,
+      playerTwo: localStorage.usernameEnemy,
       point: 0,
       pointTwo: 0,
       ready: false,
@@ -50,7 +51,6 @@ export default {
     },
     get_player_point: function (val) {
       if (val.player !== this.player) {
-        this.playerTwo = val.player
         this.pointTwo = val.point
       }
     },
@@ -59,7 +59,6 @@ export default {
     },
     all_player_ready: function (val) {
       if (val.player !== this.player) {
-        this.playerTwo = val.player
         this.readyTwo = val.ready
       }
       if (this.ready && this.readyTwo) {
@@ -109,6 +108,7 @@ export default {
         app.gameOver = true
         app.ready = false
         app.readyTwo = false
+        localStorage.removeItem('usernameEnemy')
         app.sendPlayerPoint()
       }, 10000)
     },

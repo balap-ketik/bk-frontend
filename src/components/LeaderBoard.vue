@@ -10,10 +10,8 @@
           <div class="thead">
             Username
           </div>
-          <div class="thead">
-            Score
-          </div>
-        </div>
+          <div class="thead"> Score
+          </div> </div>
         <div class="table-body" v-for='(score, index) in leaders' :key='index'>
           <div class="thead">
             {{index+1}}
@@ -21,8 +19,7 @@
           <div class="thead">
             {{score.username}}
           </div>
-          <div class="thead">
-            {{score.score}}
+          <div class="thead"> {{score.score}}
           </div>
         </div>
       </div>
@@ -31,30 +28,15 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'LeaderBoard',
-  data () {
-    return {
-      leaders: {}
-    }
-  },
   created: function () {
     this.showLeaders()
   },
+  computed: mapState(['leaders']),
   methods: {
-    showLeaders: function () {
-      let self = this
-      axios({
-        method: 'get',
-        url: 'http://localhost:3000/leaderboards'
-      }).then(response => {
-        console.log(response)
-        self.leaders = response.data.leaders
-      }).catch(error => {
-        console.log(error)
-      })
-    }
+    ...mapActions(['showLeaders'])
   }
 }
 </script>
@@ -94,6 +76,7 @@ export default {
   grid-template-columns: 45px auto 80px;
 }
 .table-body
+
 {
   display: grid;
   grid-template-columns: 45px auto 80px;
