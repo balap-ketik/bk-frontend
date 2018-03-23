@@ -16,7 +16,7 @@
       <button v-if="button.button4" v-shortkey="['arrowright']" @shortkey="clickRightPlayerOne">kanan</button>
       <button disabled="" v-else>kanan</button>
     </div>
-    <div class="game-start">
+    <div class="game-start" v-if="!ready && !gameOver">
       <button @click="playerReady"> Ready</button>
     </div>
     <h2 v-if="gameOver">Gamve Over</h2>
@@ -28,7 +28,7 @@ export default {
   name: 'BattleRoom',
   data () {
     return {
-      player: null,
+      player: localStorage.username,
       playerTwo: null,
       point: 0,
       pointTwo: 0,
@@ -67,9 +67,6 @@ export default {
       }
     }
   },
-  mounted () {
-    this.player = this.generateID()
-  },
   methods: {
     clickDownPlayerOne () {
       this.point++
@@ -93,6 +90,7 @@ export default {
     playerReady () {
       const app = this
       app.ready = true
+      app.gameOver = false
       this.$socket.emit('player_ready', {player: this.player, ready: this.ready})
     },
     startGame () {
@@ -109,7 +107,15 @@ export default {
           button4: false
         }
         app.gameOver = true
+        app.ready = false
+        app.readyTwo = false
+        app.sendPlayerPoint()
       }, 10000)
+    },
+    sendPlayerPoint () {
+      this.$http.post('/leaderboards', {username: this.player, score: this.point}).then(res => {
+        console.log(res.data)
+      }).catch(err => console.log(err))
     },
     generateID () {
       var text = ''
@@ -129,6 +135,15 @@ export default {
         button4: false
       }
       this.button[`button${number}`] = true
+      if (this.gameOver) {
+        this.getButtonPressed()
+        this.button = {
+          button1: false,
+          button2: false,
+          button3: false,
+          button4: false
+        }
+      }
     }
   }
 }
