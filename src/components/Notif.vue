@@ -79,6 +79,7 @@ export default {
       if (user.usernameEnemy === this.user) {
         localStorage.setItem('usernameEnemy', user.username)
         // show pop-up modal
+        this.showInvite()
       }
     },
     // 1st user ---in room--- 4
