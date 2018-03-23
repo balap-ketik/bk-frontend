@@ -1,27 +1,32 @@
 <template>
-  <div class="container player-list">
-    <div class="row" v-for="(player, index) in players" :key=index>
-      <div class="col-md-4">
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-action">
-            {{player}}
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-2">
-        <button class="btn btn-outline-success">
-          <i class="fab fa-playstation fa-2x"></i>
-        </button>
+  <div class="container" id="home">
+    <div class="players">
+      <h1>PLayer List</h1>
+      <div class="boardpack" v-for="(player, index) in players" :key=index>
+        <div class="playerlist">
+          <h3 v-if="player !== ''">{{player}}</h3>
+          <h3 v-else>No Online PLayer Available</h3>
+        </div>
+        <div class="logo">
+          <notif :player='player'></notif>
+        </div>
       </div>
     </div>
+    <div class="leaderboard">
+      <leaderboard></leaderboard>
+    </div>
   </div>
+
 </template>
 
 <script>
+import Notif from '@/components/Notif'
+import Leaderboard from '@/components/LeaderBoard'
+
 export default {
   data () {
     return {
-      player: '',
+      player: localStorage.getItem('username'),
       players: []
     }
   },
@@ -40,8 +45,12 @@ export default {
       }
     }
   },
+  components: {
+    Notif: Notif,
+    Leaderboard: Leaderboard
+  },
   created () {
-    this.generateId()
+    // this.generateId()
     setInterval(() => {
       this.$socket.emit('player_in', this.player)
     }, 1000)
@@ -59,12 +68,39 @@ export default {
 </script>
 
 <style>
-div.player-list
+.container
 {
-  padding-top: 15px;
+  /* background-color: black; */
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 5em;
 }
-.col-md-2
+#home
 {
-  flex:0 0 0!important;
+  font-size: 15px;
+}
+.players
+{
+  background-color: whitesmoke;
+}
+.boardpack
+{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  /* border-bottom: 1px solid rgb(253, 185, 11); */
+}
+.playerlist
+{
+  border-right: 1px solid rgb(253, 185, 11);
+  border-top: 1px solid rgb(253, 185, 11);
+}
+.logo
+{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.leaderboard
+{
+  background-color: white;
 }
 </style>
