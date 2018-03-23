@@ -1,31 +1,36 @@
 <template>
-  <div class="container" id="home">
-    <div class="players">
-      <h1>PLayer List</h1>
-      <div class="board" v-if="players.length">
-        <div class="boardpack" v-for="(player, index) in players" :key=index>
-          <div class="playerlist">
-            <h3>{{player}}</h3>
-          </div>
-          <div class="logo">
-            <notif :player='player'></notif>
+    <div class="container" id="home">
+      <div class="players">
+        <h1>Player List</h1>
+        <div class="board" v-if="players.length">
+          <div class="boardpack" v-for="(player, index) in players" :key=index>
+            <div class="playerlist">
+              <h3>{{player}}</h3>
+            </div>
+            <div class="logo">
+              <notif :player='player'></notif>
+            </div>
           </div>
         </div>
+        <div class="board" v-else>
+          <h3>No online player available</h3>
+        </div>
       </div>
-      <div class="board" v-else>
-        <h3>No online player available</h3>
+      <div class="leaderboard">
+        <leaderboard></leaderboard>
       </div>
     </div>
-    <div class="leaderboard">
-      <leaderboard></leaderboard>
-    </div>
-  </div>
-
 </template>
 
 <script>
 import Notif from '@/components/Notif'
 import Leaderboard from '@/components/LeaderBoard'
+import Header from '@/components/Header'
+// const iframeElement = document.querySelector('iframe')
+// const iframeElementID = iframeElement.id
+// const widget1 = SC.Widget(iframeElement)
+// const widget2 = SC.Widget(iframeElementID)
+// widget1 === widget2
 
 export default {
   data () {
@@ -51,7 +56,8 @@ export default {
   },
   components: {
     Notif: Notif,
-    Leaderboard: Leaderboard
+    Leaderboard: Leaderboard,
+    Header: Header
   },
   created () {
     // this.generateId()
@@ -72,12 +78,15 @@ export default {
 </script>
 
 <style>
+
 .container
 {
   /* background-color: black; */
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: 5em;
+  padding-left:60px;
+  padding-right:60px;
 }
 #home
 {
@@ -95,7 +104,6 @@ export default {
 {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  /* border-bottom: 1px solid rgb(253, 185, 11); */
 }
 .playerlist
 {
@@ -103,11 +111,14 @@ export default {
 }
 .logo
 {
-  margin-top: auto;
-  margin-bottom: auto;
+  /* margin-top: auto;
+  margin-bottom: auto; */
+  padding-top: 12px;
+  background-color: rgb(253, 185, 11);
 }
 .leaderboard
 {
   background-color: white;
 }
+
 </style>
