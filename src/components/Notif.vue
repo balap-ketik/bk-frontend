@@ -1,8 +1,6 @@
 <template>
   <div class="hello">
-    <h1>hello</h1>
-    <button id="join" @click="joinBattle(usernameEnemy)">Join Battle</button>
-
+    <button id="join" @click="invite(player)">Join Battle</button>
     <!--  2 -->
     <!-- pop up confirmation untuk join battle di room -->
     <!-- if yes, maka jalankan function -->
@@ -13,16 +11,17 @@
 
 <script>
 export default {
+  props: ['player'],
   name: 'Notification',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      player: '',
+      user: '',
       enemy: ''
     }
   },
   methods: {
-    // 1st Player  -- home -- 1
+    // 1st user  -- home -- 1
     invite: function (usernameEnemy) {
       console.log('masuk')
       localStorage.setItem('usernameEnemy', usernameEnemy)
@@ -36,7 +35,7 @@ export default {
       this.$socket.emit('invite', battle)
       this.$router.push('/battle-room')
     },
-    // 2nd Player ---- home --- 3
+    // 2nd user ---- home --- 3
     acceptChallenge: function () {
       // this.$socket.emit('confirmChallenge', true)
       this.$router.push('/battle-room')
@@ -54,21 +53,21 @@ export default {
     }
   },
   sockets: {
-    // 2nd Player ----- home ---- 2
+    // 2nd user ----- home ---- 2
     confirmation: function (user) {
       // receive notification if another user invites to play
-      if (user.usernameEnemy === this.player) {
+      if (user.usernameEnemy === this.user) {
         localStorage.setItem('usernameEnemy', user.username)
         // show pop-up modal
       }
     },
-    // 1st Player ---in room--- 4
+    // 1st user ---in room--- 4
     inviteRejected: function (user) {
       // pop-up invitation rejected
     }
   },
   created () {
-    this.player = localStorage.getItem('username')
+    this.user = localStorage.getItem('username')
   }
 }
 </script>
